@@ -7,3 +7,7 @@ deploy-local.sh
 setup-gcp.sh
 upload-to-gcp.sh
 test
+
+.terraform.lock.hcl
+.terraform/
+terraform.tfstate
