@@ -1,6 +1,7 @@
 # config.sh는 Git에 포함시키지 마세요!
 config.sh
 
+# Shell scripts
 build.sh
 copy-ssl.sh
 deploy-local.sh
@@ -8,12 +9,16 @@ setup-gcp.sh
 upload-to-gcp.sh
 test
 
+# ===== Terraform =====
 # Local .terraform directories
 **/.terraform/*
+.terraform/
+.terraform.lock.hcl
 
 # .tfstate files
 *.tfstate
 *.tfstate.*
+!terraform.tfstate.backup  # 예외: 백업 파일은 제외
 
 # Crash log files
 crash.log
@@ -31,4 +36,37 @@ override.tf.json
 
 # Ignore CLI configuration files
 .terraformrc
+.terraform/
+
+# Ignore environment files
+.env
+.env.*
+!.env.example
+
+# Ignore plan output files
+*.tfplan
+*.plan
+
+# Lock file should be committed to ensure consistent provider versions
+# .terraform.lock.hcl
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Ignore macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore local development files
+local-*
 terraform.rc
