@@ -13,9 +13,14 @@ output "public_subnet_ids" {
   value       = aws_subnet.public[*].id
 }
 
-output "private_subnet_ids" {
+output "private_was_subnet_ids" {
   description = "List of private subnet IDs"
-  value       = aws_subnet.private[*].id
+  value       = aws_subnet.private_was[*].id
+}
+
+output "private_db_subnet_ids" {
+  description = "List of private subnet IDs"
+  value       = aws_subnet.private_db[*].id
 }
 
 output "internet_gateway_id" {
@@ -23,22 +28,22 @@ output "internet_gateway_id" {
   value       = aws_internet_gateway.this.id
 }
 
-output "nat_gateway_ids" {
-  description = "List of NAT Gateway IDs"
-  value       = aws_nat_gateway.this[*].id
-}
+# output "nat_instance_id" {
+#   description = "The ID of the NAT instance"
+#   value       = aws_instance.nat_instance.id  # 이 부분을 주석 처리하거나 제거해야 합니다.
+# }
 
 output "public_route_table_ids" {
   description = "List of public route table IDs"
   value       = [aws_route_table.public.id]
 }
 
-output "private_route_table_ids" {
+output "private_was_route_table_ids" {
   description = "List of private route table IDs"
-  value       = aws_route_table.private[*].id
+  value       = aws_route_table.private_was[*].id
 }
 
-output "vpc_endpoint_s3_id" {
-  description = "The ID of VPC endpoint for S3"
-  value       = aws_vpc_endpoint.s3.id
+output "private_db_route_table_ids" {
+  description = "List of private route table IDs"
+  value       = aws_route_table.private_db[*].id
 }
