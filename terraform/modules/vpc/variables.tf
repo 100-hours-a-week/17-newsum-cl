@@ -43,15 +43,3 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
-
-variable "nat_instance_id" {
-  description = "The ID of the NAT instance"
-  type        = string
-  default     = null
-}
-
-variable "nat_instance_network_interface_id" {
-  description = "The network interface ID of the NAT instance"
-  type        = string
-  default     = null
-}

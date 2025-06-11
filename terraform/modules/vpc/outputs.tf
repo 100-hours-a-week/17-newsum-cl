@@ -28,11 +28,6 @@ output "internet_gateway_id" {
   value       = aws_internet_gateway.this.id
 }
 
-# output "nat_instance_id" {
-#   description = "The ID of the NAT instance"
-#   value       = aws_instance.nat_instance.id  # 이 부분을 주석 처리하거나 제거해야 합니다.
-# }
-
 output "public_route_table_ids" {
   description = "List of public route table IDs"
   value       = [aws_route_table.public.id]

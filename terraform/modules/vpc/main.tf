@@ -101,7 +101,7 @@ resource "aws_route_table" "private_was" {
     for_each = var.vpc_peering_connection_id != null ? [1] : []
     content {
       cidr_block                = "10.2.0.0/16"
-      vpc_peering_connection_id = var.vpc_peering_connection_id
+      vpc_peering_connection_id = aws_vpc_peering_connection.this[0].id
     }
   }
 
@@ -119,7 +119,7 @@ resource "aws_route_table" "private_db" {
     for_each = var.vpc_peering_connection_id != null ? [1] : []
     content {
       cidr_block                = "10.2.0.0/16"
-      vpc_peering_connection_id = var.vpc_peering_connection_id
+      vpc_peering_connection_id = aws_vpc_peering_connection.this[0].id
     }
   }
 

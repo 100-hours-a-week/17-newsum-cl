@@ -22,6 +22,10 @@ resource "aws_security_group" "alb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = "${var.name}-alb-sg"
+  }
 }
 
 # was_sg
@@ -36,6 +40,10 @@ resource "aws_security_group" "was" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
   }
+
+  tags = {
+    Name = "${var.name}-was-sg"
+  }
 }
 
 # db_sg
@@ -48,6 +56,10 @@ resource "aws_security_group" "db" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
+  }
+
+  tags = {
+    Name = "${var.name}-db-sg"
   }
 }
 
@@ -62,6 +74,10 @@ resource "aws_security_group" "redis" {
     to_port         = 6379
     protocol        = "tcp"
   }
+
+  tags = {
+    Name = "${var.name}-redis-sg"
+  }
 }
 
 # kafka_sg
@@ -74,6 +90,10 @@ resource "aws_security_group" "kafka" {
     from_port       = 9092
     to_port         = 9092
     protocol        = "tcp"
+  }
+
+  tags = {
+    Name = "${var.name}-kafka-sg"
   }
 }
 
@@ -112,6 +132,10 @@ resource "aws_security_group" "openvpn" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   } 
+
+  tags = {
+    Name = "${var.name}-openvpn-sg"
+  }
 }
 
 # nat_sg
@@ -133,5 +157,9 @@ resource "aws_security_group" "nat" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.name}-nat-sg"
   }
 }
