@@ -20,32 +20,38 @@ variable "public_subnets" {
   default     = []
 }
 
-variable "private_subnets" {
-  description = "A list of private subnets inside the VPC"
+variable "was_subnets" {
+  description = "A list of WAS subnets inside the VPC"
   type        = list(string)
   default     = []
 }
 
-variable "database_subnets" {
-  description = "A list of database subnets inside the VPC"
+variable "db_subnets" {
+  description = "A list of private database subnets inside the VPC"
   type        = list(string)
   default     = []
 }
 
-variable "enable_nat_gateway" {
-  description = "Should be true if you want to provision NAT Gateways for each of your private networks"
-  type        = bool
-  default     = false
-}
-
-variable "single_nat_gateway" {
-  description = "Should be true to provision a single shared NAT Gateway across all of your private networks"
-  type        = bool
-  default     = false
+variable "vpc_peering_connection_id" {
+  description = "The ID of the VPC peering connection"
+  type        = string
+  default     = null
 }
 
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
   default     = {}
+}
+
+variable "nat_instance_id" {
+  description = "The ID of the NAT instance"
+  type        = string
+  default     = null
+}
+
+variable "nat_instance_network_interface_id" {
+  description = "The network interface ID of the NAT instance"
+  type        = string
+  default     = null
 }
