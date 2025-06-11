@@ -6,7 +6,7 @@ resource "aws_vpc" "this" {
 
   tags = merge(
     {
-      Name = var.name
+      Name = "${var.name}-vpc"
     },
     var.tags
   )
@@ -145,4 +145,23 @@ resource "aws_route_table_association" "private_db" {
   route_table_id = aws_route_table.private_db[0].id
 }
 
+# vpc peering connection
+resource "aws_vpc_peering_connection" "this" {
+  count = var.vpc_peering_connection_id == null ? 0 : 1
 
+  vpc_id = aws_vpc.this.id
+  peer_vpc_id = var.vpc_peering_connection_id
+  auto_accept = true
+
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  requester {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  tags = {
+    Name = "${var.name}-shared"
+  }
+}
