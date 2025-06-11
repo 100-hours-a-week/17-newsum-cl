@@ -185,8 +185,7 @@ resource "aws_route_table" "private_was" {
     content {
       # 다른 VPC의 CIDR 블록으로의 라우팅
       cidr_block                = "10.2.0.0/16"
-      # VPC 피어링 연결 ID
-      vpc_peering_connection_id = var.vpc_peering_connection_id
+      vpc_peering_connection_id = aws_vpc_peering_connection.this[0].id
     }
   }
 
@@ -215,8 +214,7 @@ resource "aws_route_table" "private_db" {
     content {
       # 다른 VPC의 CIDR 블록으로의 라우팅
       cidr_block                = "10.2.0.0/16"
-      # VPC 피어링 연결 ID
-      vpc_peering_connection_id = var.vpc_peering_connection_id
+      vpc_peering_connection_id = aws_vpc_peering_connection.this[0].id
     }
   }
 
