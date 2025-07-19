@@ -1,45 +1,43 @@
-variable "name" {
-  description = "Name to be used on all resources as prefix"
-  type        = string
+variable "vpc_name" {
+  type = string
+  default = ""
 }
 
-variable "cidr" {
-  description = "The CIDR block for the VPC"
-  type        = string
-}
-
-variable "azs" {
-  description = "A list of availability zones in the region"
-  type        = list(string)
-  default     = []
+variable "vpc_cidr" {
+  type = string
+  default = ""
 }
 
 variable "public_subnets" {
-  description = "A list of public subnets inside the VPC"
-  type        = list(string)
-  default     = []
+  type = map(object({
+    cidr = string
+    az   = string
+    name = string
+  }))
+  default = {}
 }
 
 variable "was_subnets" {
-  description = "A list of WAS subnets inside the VPC"
-  type        = list(string)
-  default     = []
+  type = map(object({
+    cidr = string
+    az   = string
+    name = string
+  }))
+  default = {}
 }
 
 variable "db_subnets" {
-  description = "A list of private database subnets inside the VPC"
-  type        = list(string)
-  default     = []
+  type = map(object({
+    cidr = string
+    az = string
+    name = string
+  }))
+  default = {}
 }
 
-variable "vpc_peering_connection_id" {
-  description = "The ID of the VPC peering connection"
+variable "nat_type" {
+  description = "NAT 타입: 'gateway' 또는 'instance'"
   type        = string
-  default     = null
+  default     = "gateway"
 }
 
-variable "tags" {
-  description = "A map of tags to add to all resources"
-  type        = map(string)
-  default     = {}
-}

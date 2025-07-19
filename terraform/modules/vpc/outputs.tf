@@ -1,44 +1,15 @@
 output "vpc_id" {
-  description = "The ID of the VPC"
-  value       = aws_vpc.this.id
-}
-
-output "vpc_cidr_block" {
-  description = "The CIDR block of the VPC"
-  value       = aws_vpc.this.cidr_block
+  value = aws_vpc.this.id
 }
 
 output "public_subnet_ids" {
-  description = "List of public subnet IDs"
-  value       = aws_subnet.public[*].id
+  value = [for s in aws_subnet.public : s.id]
 }
 
-output "private_was_subnet_ids" {
-  description = "List of private subnet IDs"
-  value       = aws_subnet.private_was[*].id
+output "was_subnet_ids" {
+  value = [for s in aws_subnet.was : s.id]
 }
 
-output "private_db_subnet_ids" {
-  description = "List of private subnet IDs"
-  value       = aws_subnet.private_db[*].id
-}
-
-output "internet_gateway_id" {
-  description = "The ID of the Internet Gateway"
-  value       = aws_internet_gateway.this.id
-}
-
-output "public_route_table_ids" {
-  description = "List of public route table IDs"
-  value       = [aws_route_table.public.id]
-}
-
-output "private_was_route_table_ids" {
-  description = "List of private route table IDs"
-  value       = aws_route_table.private_was[*].id
-}
-
-output "private_db_route_table_ids" {
-  description = "List of private route table IDs"
-  value       = aws_route_table.private_db[*].id
+output "db_subnet_ids" {
+  value = [for s in aws_subnet.db : s.id]  
 }
